@@ -8,10 +8,14 @@ import { useBeverageStore } from "./stores/beverageStore";
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedState);
 
-const app = createApp(App);
-app.use(pinia);
+async function startApp() {
+  const app = createApp(App);
+  app.use(pinia);
 
-const beverageStore = useBeverageStore(pinia);
-await beverageStore.init();
+  const beverageStore = useBeverageStore(pinia);
+  await beverageStore.init();
 
-app.mount("#app");
+  app.mount("#app");
+}
+
+startApp();
